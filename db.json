@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "firstname": "Руслан",
+      "login": "ruslan123",
+      "password": "kakady1999",
+      "email": "fatkullov@inbox.ru",
+      "pasportData": "7313958436"
+    },
+    {
+      "firstname": "Павел",
+      "login": "igor85",
+      "password": "kakady1888",
+      "email": "igor@mail.ru",
+      "pasportData": "7313958436"
+    }
+  ]
+}
