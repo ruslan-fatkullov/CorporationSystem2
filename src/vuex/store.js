@@ -4,40 +4,52 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-    state: {
-        users: [
-            {
-              firstname: "Руслан",
-              login: "ruslan123",
-              password: "kakady1999",
-              email: "fatkullov@inbox.ru",
-              pasportData: "7313958436",
-            },
-            {
-              firstname: "Альфия",
-              login: "alfia70",
-              password: "kakady1888",
-              email: "igor@mail.ru",
-              pasportData: "7313958436",
-            },
-            
-          ],
-        count: 1
+  state: {
+    status: '',
+    currentUser: {
+
     },
-    mutations: {
-        newRecord(state, objrec) {
-            Array.prototype.push.apply(state.users, objrec);
-            return state.users
-          }
+    users: {
+      login: "",
+      password: ""
+    }
+  },
+  mutations: {
+    auth_request(state) {
+      state.status = 'loading'
     },
-    actions: {
-        
+    auth_success(state, user) {
+      state.status = 'success'
+      state.currentUser = user
     },
-    getters: {
-        USERS(state) {
-            return state.users;
-        }
+    auth_error(state) {
+      state.status = 'error'
     },
+    reg_success(state, user) {
+      state.status = 'success'
+      state.users = user
+    },
+    logout(state) {
+      state.status = ''
+    },
+  },
+  actions: {
+
+    login({commit}, user){
+      if (user.login == this.state.users.login){
+        commit("auth_success", user)
+      }else{
+        commit("auth_error")
+      }
+    },
+
+    register({ commit }, user) {
+      commit("reg_success", user)
+    }
+  },
+  getters: {
+    authStatus: state => state.status,
+  },
 })
 
 export default store;

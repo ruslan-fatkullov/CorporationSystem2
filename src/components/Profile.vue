@@ -1,9 +1,9 @@
 <template>
     <div id="profile">
-        <h3>Имя: {{user.firstname}}</h3>
-        <h3>Логин: {{user.login}}</h3>
-        <h3>Паспортные данные: {{user.pasportData}}</h3>
-        <h3>Почта: {{user.email}}</h3>
+        <h3>Имя: </h3>
+        <h3>Логин: </h3>
+        <h3>Паспортные данные:</h3>
+        <h3>Почта:</h3>
     </div>
 </template>
 

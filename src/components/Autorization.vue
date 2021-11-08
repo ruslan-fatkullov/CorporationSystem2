@@ -1,80 +1,55 @@
 <template>
-  <div class="autorization-window">
-    <label for="exampleInputLogin" class="form-label" >Логин</label>
-    <input
-      type="login"
-      class="form-control"
-      id="exampleInputLogin"
-      aria-describedby="loginHelp"
-      v-model="currentLogin"
-    />
-    <label for="exampleInputPassword1" class="form-label">Пароль</label>
-    <input
-      type="password"
-      class="form-control"
-      id="exampleInputPassword1"
-      v-model="currentPassword"
-    />
-    <label for="exampleInputName" class="form-label" >Имя</label>
-    <input
-      type="name"
-      class="form-control"
-      id="exampleInputLogin"
-      aria-describedby="loginHelp"
-    />
-    <button type="submit" class="btn btn-secondary" @click="increment">Зарегестрироваться</button>
-
-    <Profile
-      v-for="user in gettedUsers"
-      :key="user.name"
-      :user="user"
-    />
+  <div>
+    <form class="login" @submit.prevent="login">
+      <h1>Sign in</h1>
+      <label>Login</label>
+      <input required v-model="loginInfo" type="loginInfo" placeholder="Name" />
+      <label>Password</label>
+      <input
+        required
+        v-model="password"
+        type="password"
+        placeholder="Password"
+      />
+      <hr />
+      <button type="submit">Login</button>
+      <button type="" @click="registration">Register</button>
+      <div>{{ dat }}</div>
+    </form>
   </div>
 </template>
-
 <script>
-import Profile from "../components/Profile.vue";
 export default {
-  components: {
-    Profile,
-  },
   data() {
     return {
-      currentName: "",
-      currentLogin: "",
-      currentPassword: "",
-      currentEmail: "",
-      currentPasport: "",
-      user: [
-        {
-          firstname: this.currentName,
-          login: this.currentLogin,
-          password: this.currentPassword,
-          email: this.currentEmail,
-          pasportData: this.currentPasport,
-        }]
-      
+      loginInfo: "",
+      password: "",
+      dat: "",
     };
   },
-  computed: {
-    gettedUsers : function() {
-      return this.$store.getters.USERS;
+  methods: {
+    login: function () {
+      let login = this.loginInfo;
+      let password = this.password;
+      this.$store.dispatch("login", { login, password });
+
+      if (this.getStatus == "success") {
+        this.$router.push("/profile");
+      } else {
+        this.dat = this.getStatus;
+      }
+    },
+    registration: function () {
+      this.$router.push("/register");
     },
   },
-  methods: {
-    increment: function(){
-      this.$store.commit('newRecord', this.user);
-    }
+  computed: {
+    getStatus() {
+      return this.$store.getters.authStatus;
+    },
   },
 };
 </script>
-
 <style scoped>
-.autorization-window {
-  margin: auto;
-  max-width: 600px;
-}
-.button button {
-  margin-left: 10px;
-}
-</style>
+</style>>
+    
