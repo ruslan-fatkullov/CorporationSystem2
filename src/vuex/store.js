@@ -10,17 +10,15 @@ const store = new Vuex.Store({
 
     },
     users: {
-      login: "",
-      password: ""
-    }
+      
+    },
+    locale: "ru-RU"
+  
   },
   mutations: {
-    auth_request(state) {
-      state.status = 'loading'
-    },
-    auth_success(state, user) {
+    auth_success(state) {
       state.status = 'success'
-      state.currentUser = user
+      state.currentUser = this.state.users
     },
     auth_error(state) {
       state.status = 'error'
@@ -32,23 +30,34 @@ const store = new Vuex.Store({
     logout(state) {
       state.status = ''
     },
+    password_changed(state, password) {
+      state.users.password = password.pas
+    },
+    localeSet(state, isRuLocale){
+      state.locale = isRuLocale
+    },
   },
   actions: {
 
     login({commit}, user){
       if (user.login == this.state.users.login){
-        commit("auth_success", user)
+        commit("auth_success")
       }else{
         commit("auth_error")
       }
     },
-
     register({ commit }, user) {
       commit("reg_success", user)
+    },
+    changePassword({commit}, password){
+      commit("password_changed", password)
+    },
+    setLocale({commit}, isRuLocale){
+      commit("localeSet", isRuLocale)
     }
   },
   getters: {
-    authStatus: state => state.status,
+    getLocale: state => state.locale,
   },
 })
 

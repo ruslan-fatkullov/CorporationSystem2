@@ -1,56 +1,117 @@
 <template>
-  <div>
-    <h4>Register</h4>
-    <form @submit.prevent="register">
-      <label for="name">Name</label>
-      <div>
-        <input id="name" type="text" v-model="name" required autofocus />
-      </div>
+  <div class="registration">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <header class="card-header">
+              <button
+                class="float-right btn btn-outline-primary mt-1"
+                @click="backToAuto"
+              >
+                Log in
+              </button>
+              <h4 class="card-title mt-2">Registration</h4>
+            </header>
+            <article class="card-body">
+              <form @submit.prevent="checkForm">
+                <div class="form-group">
+                  <label>Name </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    v-model="name"
+                  />
+                </div>
+                <!-- form-row end.// -->
+                <div class="form-group">
+                  <label>Login</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    v-model="login"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Email address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="example@mail.com"
+                    v-model="email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Pasport data</label>
+                  <MaskedInput
+                    type="text"
+                    class="form-control"
+                    placeholder="73-15-344335"
+                    :mask="[
+                      /\d/,
+                      /\d/,
+                      '-',
+                      /\d/,
+                      /\d/,
+                      '-',
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                      /\d/,
+                    ]"
+                    v-model="pasport"
+                  />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Create password</label>
+                    <input
+                      class="form-control"
+                      type="password"
+                      v-model="password"
+                    />
+                  </div>
 
-      <label for="login">Login</label>
-      <div>
-        <input id="login" type="text" v-model="login" required autofocus />
-      </div>
+                  <div class="form-group">
+                    <label>Confirm password</label>
+                    <input
+                      class="form-control"
+                      type="password"
+                      v-model="password_confirmation"
+                    />
+                  </div>
+                </div>
 
-      <label for="email">E-Mail Address</label>
-      <div>
-        <input id="email" type="email" v-model="email" required />
+                <div class="form-group error">
+                  {{ error }}
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-block">
+                    Register
+                  </button>
+                </div>
+                <!-- form-group// -->
+              </form>
+            </article>
+            <!-- card-body end .// -->
+          </div>
+          <!-- card.// -->
+        </div>
+        <!-- col.//-->
       </div>
-
-      <label for="pasport">Pasport data</label>
-      <div>
-        <input id="pasport" type="pasport" v-model="pasport" required />
-      </div>
-
-      <label for="password">Password</label>
-      <div>
-        <input id="password" type="password" v-model="password" required />
-      </div>
-
-      <label for="password-confirm">Confirm Password</label>
-      <div>
-        <input
-          id="password-confirm"
-          type="password"
-          v-model="password_confirmation"
-          required
-        />
-      </div>
-
-      <div>
-        <button type="submit">Register</button>
-      </div>
-    </form>
-    <!-- <Profile v-for="user in gettedUsers" :key="user.name" :user="user" /> -->
+    </div>
+    <!-- row.//-->
   </div>
 </template>
 
 <script>
-// import Profile from "../components/Profile.vue";
+import MaskedInput from "vue-text-mask";
+// import regex from "regex";
 export default {
-  components: {
-    // Profile,
-  },
   data() {
     return {
       name: "",
@@ -59,12 +120,57 @@ export default {
       pasport: "",
       password: "",
       password_confirmation: "",
+      error: "",
     };
   },
-  computed: {
-    
+  components: {
+    MaskedInput,
   },
+  computed: {},
   methods: {
+    checkForm: function () {
+      //проверка
+      let regex = new RegExp();
+      if (
+        !(
+          this.name &&
+          this.login &&
+          this.email &&
+          this.pasport &&
+          this.password &&
+          this.password_confirmation
+        )
+      ) {
+        this.error = "Заполните пропущенные поля";
+        return;
+      }
+      regex = /^[a-zA-Z]{1,20}$/;
+      if (!regex.test(this.login)) {
+        this.error = "Логин должен состоять из только из латинских букв";
+        return;
+      }
+      regex = /^\w{1,20}@+\w{1,20}\.+\w{1,20}$/;
+      if (!regex.test(this.email)) {
+        this.error = "Введите корректный email";
+        return;
+      }
+      regex = /^\d{2}-+\d{2}-+\d{6}$/;
+      if (!regex.test(this.pasport)) {
+        this.error = "Введите корректный паспортные данные";
+        return;
+      }
+      if(!(this.password.length >= 3)){
+        this.error = "Пароль должен быть длиной более 3-х символов";
+        return;
+      }
+      if(!(this.password == this.password_confirmation)){
+        this.error = "Пароли не совпадают";
+        return;
+      }
+      this.register();
+
+      //проверка
+    },
     register: function () {
       var data = {
         name: this.name,
@@ -72,22 +178,43 @@ export default {
         email: this.email,
         pasport: this.pasport,
         password: this.password,
-
       };
-      this.$store.dispatch("register", data)
+      this.$store
+        .dispatch("register", data)
         .then(() => this.$router.push("/"))
         .catch((err) => console.log(err));
+    },
+    backToAuto: function () {
+      this.$router.push("/");
     },
   },
 };
 </script>
 
 <style scoped>
-.autorization-window {
+.form-row {
+  display: flex;
+}
+.float-right {
+  float: right;
+}
+.container {
+  margin-top: 30px;
+}
+.form-group {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+.error {
+  color: red;
+  text-align: left;
+}
+/* .autorization-window {
   margin: auto;
   max-width: 600px;
 }
 .button button {
   margin-left: 10px;
-}
+} */
 </style>

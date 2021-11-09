@@ -3,8 +3,10 @@ import App from './App.vue'
 import store from './vuex/store'
 import router from './router'
 import Axios from 'axios'
+import localizeFilter from "./filters/localize.filter"
 
 Vue.config.productionTip = false
+Vue.filter("localize", localizeFilter)
 
 Vue.prototype.$http = Axios;
 const token = localStorage.getItem('token')
