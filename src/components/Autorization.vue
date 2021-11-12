@@ -5,14 +5,13 @@
         <div class="col-md-6">
           <div class="card">
             <header class="card-header">
-              <h4 class="card-title mt-2">Sign up</h4>
+              <h4 class="card-title mt-2">{{ "Autorization" | localize }}</h4>
             </header>
             <article class="card-body">
               <form @submit.prevent="login">
-                
                 <!-- form-row end.// -->
                 <div class="form-group">
-                  <label>Login</label>
+                  <label>{{"Login"|localize}}</label>
                   <input
                     type="text"
                     class="form-control"
@@ -21,22 +20,26 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label> Password</label>
+                  <label> {{"Password"|localize}}</label>
                   <input
                     class="form-control"
                     type="password"
                     v-model="password"
                   />
                 </div>
-                
-                <div class="form-group error">{{error}}</div>
+
+                <div class="form-group error">{{ error }}</div>
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary btn-block">
-                    Login
+                    {{"SignUp"|localize}}
                   </button>
-                  <button type="submit" class="btn btn-secondary btn-block" @click="registration">
-                    Registration
+                  <button
+                    type="submit"
+                    class="btn btn-secondary btn-block"
+                    @click="registration"
+                  >
+                    {{"Registration"|localize}}
                   </button>
                 </div>
                 <!-- form-group// -->
@@ -78,8 +81,13 @@ export default {
   },
   methods: {
     login: function () {
+      var crypto = require("crypto");
+      var shasum = crypto.createHash("md5");
+      shasum.update(this.password);
+      var pas = shasum.digest("hex");
+
       let login = this.loginInfo;
-      let password = this.password;
+      let password = pas;
       this.$store.dispatch("login", { login, password });
 
       if (this.getStatus == "success") {
@@ -112,7 +120,7 @@ export default {
 .form-group {
   margin: 10px;
 }
-.form-group>button {
+.form-group > button {
   margin-left: 5px;
   margin-right: 5px;
 }

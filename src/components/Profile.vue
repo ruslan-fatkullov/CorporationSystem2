@@ -21,7 +21,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Email</h6>
+                <h6 class="mb-0">{{"Email" | localize}}</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{ this.$store.state.users.email }}
@@ -30,7 +30,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Pasport data</h6>
+                <h6 class="mb-0">{{"Pasport" | localize}}</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{ this.$store.state.users.pasport }}
@@ -39,7 +39,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Login</h6>
+                <h6 class="mb-0">{{"Login" | localize}}</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{ this.$store.state.users.login }}
@@ -48,7 +48,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Password</h6>
+                <h6 class="mb-0">{{"Password" | localize}}</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{ this.$store.state.users.password }}
@@ -59,7 +59,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <a class="btn btn-primary" @click="changePassword"
-                  >Change password</a
+                  >{{"ChangePassword" | localize}}</a
                 >
               </div>
             </div>
@@ -73,14 +73,14 @@
                 role="switch"
                 id="flexSwitchCheckDefault"
                 v-model="isRuLocale"
+                @click="setLocale"
               />
               Русский
-              <!-- <label class="form-check-label" for="flexSwitchCheckDefault"
-                >Default switch checkbox input</label
-              > -->
             </div>
 
-            <button @click="setLocale">Обновить</button>
+            <button class="btn btn-primary" @click="setLocale">{{ "Update" | localize}}</button>
+
+
           </div>
         </div>
       </div>

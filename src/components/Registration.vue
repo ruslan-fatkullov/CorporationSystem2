@@ -9,14 +9,14 @@
                 class="float-right btn btn-outline-primary mt-1"
                 @click="backToAuto"
               >
-                Log in
+                {{"SignUp"|localize}}
               </button>
-              <h4 class="card-title mt-2">Registration</h4>
+              <h4 class="card-title mt-2">{{"Registration"|localize}}</h4>
             </header>
             <article class="card-body">
               <form @submit.prevent="checkForm">
                 <div class="form-group">
-                  <label>Name </label>
+                  <label>{{"Name"|localize}} </label>
                   <input
                     type="text"
                     class="form-control"
@@ -26,7 +26,7 @@
                 </div>
                 <!-- form-row end.// -->
                 <div class="form-group">
-                  <label>Login</label>
+                  <label>{{"Login"|localize}}</label>
                   <input
                     type="text"
                     class="form-control"
@@ -35,7 +35,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label>Email address</label>
+                  <label>{{"Email"|localize}}</label>
                   <input
                     type="text"
                     class="form-control"
@@ -44,7 +44,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label>Pasport data</label>
+                  <label>{{"Pasport"|localize}}</label>
                   <MaskedInput
                     type="text"
                     class="form-control"
@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-row">
                   <div class="form-group">
-                    <label>Create password</label>
+                    <label>{{"CrtPassword"|localize}}</label>
                     <input
                       class="form-control"
                       type="password"
@@ -77,7 +77,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label>Confirm password</label>
+                    <label>{{"CnfPassword"|localize}}</label>
                     <input
                       class="form-control"
                       type="password"
@@ -159,25 +159,30 @@ export default {
         this.error = "Введите корректный паспортные данные";
         return;
       }
-      if(!(this.password.length >= 3)){
+      if (!(this.password.length >= 3)) {
         this.error = "Пароль должен быть длиной более 3-х символов";
         return;
       }
-      if(!(this.password == this.password_confirmation)){
+      if (!(this.password == this.password_confirmation)) {
         this.error = "Пароли не совпадают";
         return;
       }
       this.register();
-
-      //проверка
+      
+      //проверкаd
     },
     register: function () {
+      var crypto = require('crypto')
+      var shasum = crypto.createHash("md5");
+      shasum.update(this.password);
+      var pas = shasum.digest('hex');
+
       var data = {
         name: this.name,
         login: this.login,
         email: this.email,
         pasport: this.pasport,
-        password: this.password,
+        password: pas,
       };
       this.$store
         .dispatch("register", data)

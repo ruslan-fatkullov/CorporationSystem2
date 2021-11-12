@@ -10,7 +10,8 @@ const store = new Vuex.Store({
 
     },
     users: {
-      
+      login: '1',
+      password: '1'
     },
     locale: "ru-RU"
   
@@ -40,7 +41,7 @@ const store = new Vuex.Store({
   actions: {
 
     login({commit}, user){
-      if (user.login == this.state.users.login){
+      if (user.login == this.state.users.login && user.password == this.state.users.password){
         commit("auth_success")
       }else{
         commit("auth_error")
@@ -58,6 +59,7 @@ const store = new Vuex.Store({
   },
   getters: {
     getLocale: state => state.locale,
+    authStatus: state => state.status,
   },
 })
 

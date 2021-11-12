@@ -4,6 +4,7 @@ import Register from './components/Registration.vue'
 import Profile from './components/Profile.vue'
 import Autorization from './components/Autorization.vue'
 import Graph from './components/Graph.vue'
+import ReactionTest from './components/ReactionTest.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ let router = new Router({
       path: '/graph',
       name: 'graph',
       component: Graph
+    },
+    {
+      path: '/reaction_test',
+      name: 'reaction_test',
+      component: ReactionTest
     },
     // {
     //   path: '/about',

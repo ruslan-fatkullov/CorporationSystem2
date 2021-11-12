@@ -2,23 +2,28 @@
   <div class="navigation">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Corporation system</a>
+        <a class="navbar-brand" href="#">{{'CorporationSystem' | localize}}</a>
         <div class="navbar-collapse" id="navbarNav">
         <!-- <div class="collapse navbar-collapse" id="navbarNav">  -->
           <ul class="navbar-nav">
             <li class="nav-item">
               <router-link class="nav-link" to="/graph" exact
-                >Graph</router-link
+                >{{"Graph" | localize}}</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/reaction_test" exact
+                >{{"Test"|localize}}</router-link
               >
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/profile" exact
-                >Profile</router-link
+                >{{"Profile"|localize}}</router-link
               >
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/" exact
-                >Logout ({{ this.$store.state.users.name }})</router-link
+                >{{"Logout"|localize}} ({{ this.$store.state.users.name }})</router-link
               >
             </li>
           </ul>

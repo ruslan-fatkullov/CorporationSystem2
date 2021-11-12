@@ -13,11 +13,11 @@
       <div class="container">
         <div class="col-md-3">
           <button class="btn btn-primary" @click="showDialog">
-            Chose parameters
+            {{"ChoseParameters" | localize}}
           </button>
         </div>
         <LineChart
-          class="col-md-9 graph"
+          class="col-md-6 graph"
           :chart-data="datacollection"
           :options="options"
         />
