@@ -5,7 +5,7 @@
         <div class="modal-wrapper">
           <div class="modal-container">
             <div class="modal-header">
-              <slot name="header"> Введите новый пароль </slot>
+              <slot name="header"> {{ "EntNewPas" | localize }} </slot>
             </div>
 
             <div class="modal-body">
@@ -18,7 +18,9 @@
                     v-model="password"
                     autocomplete="off"
                   />
-                  <label for="floatingInputValue">Password</label>
+                  <label for="floatingInputValue">{{
+                    "Password" | localize
+                  }}</label>
                 </form>
 
                 <form class="form-floating">
@@ -29,7 +31,9 @@
                     v-model="passwordConfirm"
                     autocomplete="off"
                   />
-                  <label for="floatingInputValue">Password confirm</label>
+                  <label for="floatingInputValue">{{
+                    "CnfPassword" | localize
+                  }}</label>
                 </form>
                 <div class="error">
                   {{ error }}
@@ -43,13 +47,14 @@
                   class="modal-default-button btn btn-secondary"
                   @click="closeDialog"
                 >
-                  Закрыть {{ test }}
+                  {{ "Close" | localize }}
+                  <!-- {{ test }} -->
                 </button>
                 <button
                   class="modal-default-button btn btn-primary"
                   @click="savePassword"
                 >
-                  Сохранить
+                  {{ "Save" | localize }}
                 </button>
               </slot>
             </div>
@@ -67,17 +72,24 @@ export default {
     return {
       password: "",
       passwordConfirm: "",
-      error: ""
+      error: "",
     };
   },
   methods: {
     savePassword() {
-      var pas = this.password;
+      var crypto = require("crypto");
+      var shasum = crypto.createHash("md5");
+      shasum.update(this.password);
+      var pas = shasum.digest("hex");
+      if (this.password.length < 3){
+        this.error = "Пароли не должен быть короче 3-х символов";
+        return;
+      }
       if (this.password == this.passwordConfirm) {
         this.$store.dispatch("changePassword", { pas });
-        this.$emit("closeDialog")
-      }else {
-        this.error = "Пароли не совпадают"
+        this.$emit("closeDialog");
+      } else {
+        this.error = "Пароли не совпадают";
       }
     },
     closeDialog() {
@@ -164,7 +176,7 @@ ul {
 .form-floating {
   margin-bottom: 12px;
 }
-.error{
-  color:red;
+.error {
+  color: red;
 }
 </style>

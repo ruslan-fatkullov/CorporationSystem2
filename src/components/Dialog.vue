@@ -50,7 +50,7 @@
                   class="modal-default-button btn btn-secondary"
                   @click="closeDialog"
                 >
-                  Закрыть {{test}}
+                  Закрыть 
                 </button>
                 <button
                   class="modal-default-button btn btn-primary"

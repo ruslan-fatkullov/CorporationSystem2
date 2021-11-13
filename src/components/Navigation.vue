@@ -11,11 +11,11 @@
                 >{{"Graph" | localize}}</router-link
               >
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link class="nav-link" to="/reaction_test" exact
                 >{{"Test"|localize}}</router-link
               >
-            </li>
+            </li> -->
             <li class="nav-item">
               <router-link class="nav-link" to="/profile" exact
                 >{{"Profile"|localize}}</router-link

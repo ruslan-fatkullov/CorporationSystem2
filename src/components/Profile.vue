@@ -12,7 +12,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0"> {{'FullName' | localize}} </h6>
+                <h6 class="mb-0">{{ "FullName" | localize }}</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{ this.$store.state.users.name }}
@@ -21,7 +21,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">{{"Email" | localize}}</h6>
+                <h6 class="mb-0">{{ "Email" | localize }}</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{ this.$store.state.users.email }}
@@ -30,7 +30,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">{{"Pasport" | localize}}</h6>
+                <h6 class="mb-0">{{ "Pasport" | localize }}</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{ this.$store.state.users.pasport }}
@@ -39,7 +39,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">{{"Login" | localize}}</h6>
+                <h6 class="mb-0">{{ "Login" | localize }}</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{ this.$store.state.users.login }}
@@ -48,7 +48,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">{{"Password" | localize}}</h6>
+                <h6 class="mb-0">{{ "Password" | localize }}</h6>
               </div>
               <div class="col-sm-9 text-secondary">
                 {{ this.$store.state.users.password }}
@@ -57,30 +57,28 @@
             <hr />
 
             <div class="row">
-              <div class="col-sm-12">
-                <a class="btn btn-primary" @click="changePassword"
-                  >{{"ChangePassword" | localize}}</a
-                >
+              <div class="col-sm-4">
+                <a class="btn btn-primary" @click="changePassword">{{
+                  "ChangePassword" | localize
+                }}</a>
+              </div>
+              <div class="col-sm-4 footer_profile">
+                <p>Русский/English</p>
+                <div class="form-check-us form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckDefault"
+                    v-model="isRuLocale"
+                    @click="setLocale"
+                  />
+                </div>
               </div>
             </div>
             <!-- Switch -->
 
-            <div class="form-check form-switch">
-              English
-              <input
-                class="form-check-input"
-                type="checkbox"
-                role="switch"
-                id="flexSwitchCheckDefault"
-                v-model="isRuLocale"
-                @click="setLocale"
-              />
-              Русский
-            </div>
-
-            <button class="btn btn-primary" @click="setLocale">{{ "Update" | localize}}</button>
-
-
+            <!-- <button class="btn btn-primary" @click="setLocale">{{ "Update" | localize}}</button> -->
           </div>
         </div>
       </div>
@@ -116,8 +114,8 @@ export default {
       this.ifVisible = false;
     },
     setLocale: function () {
-      let locale = this.isRuLocale ? "ru-RU" : "en-US"
-      this.$store.dispatch("setLocale", locale)
+      let locale = this.isRuLocale ? "ru-RU" : "en-US";
+      this.$store.dispatch("setLocale", locale);
     },
   },
   mounted() {
@@ -136,5 +134,11 @@ export default {
 }
 .col-sm-12 {
   text-align: left;
+}
+.footer_profile {
+  display: flex;
+}
+.form-check-us{
+  margin-left: 5px;
 }
 </style>

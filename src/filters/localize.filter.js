@@ -19,7 +19,10 @@ const locales = {
         Registration: "Регистрация",
         Name: "Имя",
         CrtPassword: "Создайте пароль",
-        CnfPassword: "Повторите пароль"
+        CnfPassword: "Повторите пароль",
+        EntNewPas: "Введите новый пароль",
+        Close: "Закрыть",
+        Save: "Сохранить"
     },
     'en-US': {
         FullName: 'Full name',
@@ -40,12 +43,14 @@ const locales = {
         Registration: "Registration",
         Name: "Name",
         CrtPassword: "Create password",
-        CnfPassword: "Confirm password"
+        CnfPassword: "Confirm password",
+        EntNewPas: "Enter new password",
+        Close: "Close",
+        Save: "Save"
     }
 }
 
 export default function localizeFilter(key) {
-    const locale = store.getters.getLocale// || "ru-RU"
-    console.log(locale)
-    return locales[locale][key] || '[LocalizeError]: key ${key} not found'
+    const locale = store.getters.getLocale || "ru-RU"
+    return locales[locale][key] || '[LocalizeError]: key not found'
 }
