@@ -36,7 +36,7 @@
                   </button>
                   <button
                     type="submit"
-                    class="btn btn-secondary btn-block"
+                    class="btn btn-outline-primary"
                     @click="registration"
                   >
                     {{"Registration"|localize}}
@@ -52,22 +52,6 @@
         <!-- col.//-->
       </div>
     </div>
-    <!-- <form class="login" @submit.prevent="login">
-      <h1>Sign in</h1>
-      <label>Login</label>
-      <input required v-model="loginInfo" type="loginInfo" placeholder="Name" />
-      <label>Password</label>
-      <input
-        required
-        v-model="password"
-        type="password"
-        placeholder="Password"
-      />
-      <hr />
-      <button type="submit">Login</button>
-      <button type="" @click="registration">Register</button>
-      <div>{{ dat }}</div>
-    </form> -->
   </div>
 </template>
 <script>

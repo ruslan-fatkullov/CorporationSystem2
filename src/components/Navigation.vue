@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark  bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">{{'CorporationSystem' | localize}}</a>
         <div class="navbar-collapse" id="navbarNav">
@@ -39,17 +39,21 @@ export default {
 </script>
 <style>
 a.nav-link {
-  padding: 10px;
+  padding: 5px;
 }
 nav.navbar {
-  padding: 0 0;
+  /* padding: 0 0; */
 }
 .navbar-brand {
   font-size: 1.6rems;
 }
+.navbar-collapse{
+  float: right;
+}
 
 a.router-link-active,
 li.router-link-active > a {
-  background-color: #a8b4af;
+  background-color: #6707e4;
+  border-radius: 20px;
 }
 </style>

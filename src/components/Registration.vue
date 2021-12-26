@@ -6,7 +6,7 @@
           <div class="card">
             <header class="card-header">
               <button
-                class="float-right btn btn-outline-primary mt-1"
+                class="float-right btn btn-outline-link mt-1"
                 @click="backToAuto"
               >
                 {{"SignUp"|localize}}

@@ -122,9 +122,9 @@ export default {
         labels: labels,
         datasets: [
           {
-            label: "My First dataset",
-            backgroundColor: "#F00",
-            borderColor: "#F00",
+            label: "Ax^3 + Bx^2 - x + C",
+            backgroundColor: "#d111a1",
+            borderColor: "#d111a1",
             data: this.fillMassive(),
             fill: false,
           },
@@ -133,7 +133,7 @@ export default {
     },
     randomScalingFactor(x) {
       return Math.floor(
-        this.A * Math.pow(x, 3) * Math.sin(this.B * x) - this.C
+        this.A * Math.pow(x, 3) + this.B * Math.pow(x, 2) - x + this.C
       );
     },
     fillMassive() {

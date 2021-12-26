@@ -7,50 +7,50 @@
     />
     <NavBar />
     <div class="content">
-      <div class="col-md-8">
+      <div class="col-md-7">
         <div class="card mb-3">
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-5">
                 <h6 class="mb-0">{{ "FullName" | localize }}</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-sm-7 text-secondary">
                 {{ this.$store.state.users.name }}
               </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-5">
                 <h6 class="mb-0">{{ "Email" | localize }}</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-sm-7 text-secondary">
                 {{ this.$store.state.users.email }}
               </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-5">
                 <h6 class="mb-0">{{ "Pasport" | localize }}</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-sm-7 text-secondary">
                 {{ this.$store.state.users.pasport }}
               </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-5">
                 <h6 class="mb-0">{{ "Login" | localize }}</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-sm-7 text-secondary">
                 {{ this.$store.state.users.login }}
               </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-5">
                 <h6 class="mb-0">{{ "Password" | localize }}</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
+              <div class="col-sm-7 text-secondary">
                 {{ this.$store.state.users.password }}
               </div>
             </div>
@@ -126,7 +126,7 @@ export default {
 </script>
 
 <style scoped>
-.col-md-8 {
+.col-md-7 {
   margin: 0 auto;
 }
 .content {
@@ -135,10 +135,17 @@ export default {
 .col-sm-12 {
   text-align: left;
 }
+
+.col-sm-5{
+  text-align: right;
+}
+.col-sm-7{
+  text-align: left;
+}
 .footer_profile {
   display: flex;
 }
-.form-check-us{
+.form-check-us {
   margin-left: 5px;
 }
 </style>
